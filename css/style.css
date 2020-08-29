@@ -87,6 +87,7 @@ ul, ol {
 }
 
 .group-style {
+  position: relative;
   width: 100%;
   min-height: 55px;
   background: rgba(55, 255, 255, 0.9);
@@ -202,6 +203,27 @@ ul, ol {
           animation: listAppear 0.3s;
   grid-column: 1/5;
   cursor: pointer;
+}
+
+.list-hide {
+  position: absolute;
+  top: calc(25px);
+  right: 5px;
+  width: 30px;
+  height: 5px;
+  background: crimson;
+  cursor: pointer;
+  -webkit-transition: border-radius 0.3s;
+  -o-transition: border-radius 0.3s;
+  transition: border-radius 0.3s;
+}
+
+.list-hide:hover {
+  border-radius: 5px;
+}
+
+.list-hide-active {
+  display: none;
 }
 
 @-webkit-keyframes listAppear {
