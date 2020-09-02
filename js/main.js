@@ -5,50 +5,71 @@ const allGroups = document.querySelector('.side-bar-content'); // all groups in 
 let createGroup = (e) => {
 	// create elements
 	const group = document.createElement('div'); // create the group
-	const groupBtn = document.createElement('div'); // create button inside the group
+	const addListBtn = document.createElement('div'); // create button inside the group
 	const groupBtnDelete = document.createElement('div'); // create button for delete the group
-	const inputName = document.querySelector('.add-name-group').value;
+	const inputName = document.querySelector('.add-name-group').value; // get value from input
 	const nameGroup = document.createElement('p');
 	const listHide = document.createElement('div');
 
 	// add classes for elements
 	group.classList.add('group-style');
-	groupBtn.classList.add('group-style-btn');
+	addListBtn.classList.add('add-list-btn');
 	groupBtnDelete.classList.add('group-style-btn-delete');
 	nameGroup.classList.add('name-group');
 	listHide.classList.add('list-hide');
+
+
+	// add groups in the localStorage
+	let groupsArray = [];
+
+	// but at the beginning, we add the groups in the array
+	groupsArray.push(group);
 
 
 	// add name for group
 	inputName === "" ? nameGroup.textContent = 'group' : nameGroup.textContent = inputName ;
 
 
+	// add content for a button - addListBtn
+	addListBtn.textContent = 'add List'
+
+
 	// add elements to anoter elements
 	allGroups.append(group);
-	group.prepend(groupBtn);
+	group.prepend(addListBtn);
 	group.prepend(nameGroup);
 	group.prepend(groupBtnDelete);
 	group.prepend(listHide);
 
 
-	const createList = () => {
+	const addList = () => {
 		const list = document.createElement('div');
 
+
+		// this is a check. We check, if we have an elements, where is a class -- list-hide-active, we remove it;
+		for (let i = 0; i < group.childNodes.length; i++) {
+			group.childNodes[i].classList.remove('list-hide-active');
+		}
+
+
+		// add class for list
 		list.classList.add('list-style');
 
+
+		// add the list in the group
 		group.append(list);
+
 
 		// hide list
 		listHide.addEventListener('click', () => {
-
 			list.classList.toggle('list-hide-active');
 		});
 	}
 
 
 	// add lists
-	groupBtn.addEventListener('click', () => {
-		createList();
+	addListBtn.addEventListener('click', () => {
+		addList();
 	});
 
 
