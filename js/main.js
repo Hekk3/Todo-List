@@ -1,6 +1,7 @@
-const btnAddGroup = document.querySelector('.add-group');
+const addGroupBtn = document.querySelector('.add-group'),
+	  addTaskBtn = document.querySelector('.task__bottom-panel-btn');
 
-const createGroup = () => {
+const createGroup = function() {
 	// create elements
 	const group = document.createElement('div'); // create the group
 	const addListBtn = document.createElement('div'); // create button inside the group
@@ -55,7 +56,7 @@ const createGroup = () => {
 	});
 };
 
-const createList = (group, listHide, groupBtnDelete) => {
+const createList = function(group, listHide, groupBtnDelete) {
 	const list = document.createElement('div');
 	const inputNameList = document.createElement('input');
 	const btnListDelete = document.createElement('div');
@@ -104,18 +105,17 @@ const createList = (group, listHide, groupBtnDelete) => {
 	createListContent(list, btnListDelete, groupBtnDelete);
 };
 
-const createListContent = (list, btnListDelete, groupBtnDelete) => {
+const createListContent = function(list, btnListDelete, groupBtnDelete) {
 	const	tasksBody = document.querySelector('.tasks'),
-			taskContainer = document.createElement('div'),
-			taskContainerPanel = document.createElement('div');
+			taskContainer = document.createElement('div');
 
 
+	// add class for elements
 	taskContainer.classList.add('task-container');
-	taskContainerPanel.classList.add('task-container__panel')
 
 
+	// add element in the places
 	tasksBody.append(taskContainer);
-	taskContainer.append(taskContainerPanel);
 
 
 	// hide taskContainer
@@ -140,10 +140,20 @@ const createListContent = (list, btnListDelete, groupBtnDelete) => {
 	groupBtnDelete.addEventListener('click', () => {
 		taskContainer.remove();
 	});
-
 };
 
+const createTask = function() {
+	const	task = document.createElement('div'),
+			taskContainer = document.querySelector('.task-container_active');
 
-btnAddGroup.addEventListener('click', (e) => {
-	createGroup(e);
-});
+
+	task.classList.add('task');
+
+
+	if (taskContainer !== null) {
+		taskContainer.append(task);
+	}
+};
+
+addTaskBtn.addEventListener('click', createTask);
+addGroupBtn.addEventListener('click', createGroup);

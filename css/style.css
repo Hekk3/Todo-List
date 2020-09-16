@@ -36,7 +36,46 @@ ul, ol {
 }
 
 .container .side-bar .side-bar-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background: rgba(255, 55, 255, 0.3);
+}
+
+.container .side-bar .side-bar-header .top-panel__anim {
+  width: 15px;
+  height: 15px;
+  background: black;
+  -webkit-animation: topPanelAnim 0.6s infinite linear;
+          animation: topPanelAnim 0.6s infinite linear;
+}
+
+@-webkit-keyframes topPanelAnim {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes topPanelAnim {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 .container .side-bar .side-bar-content {
@@ -96,8 +135,10 @@ ul, ol {
   position: relative;
   width: 100%;
   min-height: 55px;
-  background: rgba(55, 255, 255, 0.9);
-  border-bottom: 1px solid #fff3d6;
+  background: black;
+  -webkit-box-shadow: 0px 1px 13px #000;
+          box-shadow: 0px 1px 13px #000;
+  border-radius: 0px 10px 10px 0px;
   -webkit-animation: groupAppear 0.4s;
           animation: groupAppear 0.4s;
   display: grid;
@@ -200,6 +241,25 @@ ul, ol {
   color: gray;
 }
 
+.group-style::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 55px;
+  background: #0000ff;
+  border-radius: 0px 15px 15px 0px;
+  opacity: 0;
+  -webkit-transition: opacity .6s;
+  -o-transition: opacity .6s;
+  transition: opacity .6s;
+}
+
+.group-style:hover::before {
+  opacity: 1;
+}
+
 .group-delete-anim {
   -webkit-animation: groupDelete 0.3s;
           animation: groupDelete 0.3s;
@@ -260,12 +320,16 @@ ul, ol {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  height: 50px;
+  height: 55px;
   background: #ffffff80;
-  border-bottom: 2px solid green;
   -webkit-animation: listAppear 0.3s;
           animation: listAppear 0.3s;
   grid-column: 1/5;
+  -webkit-transition: -webkit-box-shadow 0.3s;
+  transition: -webkit-box-shadow 0.3s;
+  -o-transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
   cursor: pointer;
 }
 
@@ -307,24 +371,32 @@ ul, ol {
   opacity: 0.9;
   left: calc(50% - 10px);
   top: calc(50% - 1.5px);
-  -webkit-transition: -webkit-transform 0.3s;
-  transition: -webkit-transform 0.3s;
-  -o-transition: transform 0.3s;
-  transition: transform 0.3s;
-  transition: transform 0.3s, -webkit-transform 0.3s;
+  -webkit-transition: -webkit-transform 0.6s;
+  transition: -webkit-transform 0.6s;
+  -o-transition: transform 0.6s;
+  transition: transform 0.6s;
+  transition: transform 0.6s, -webkit-transform 0.6s;
+}
+
+.list-style .btn-list-delete::after {
+  -webkit-transition: -webkit-transform 0.6s 0.1s;
+  transition: -webkit-transform 0.6s 0.1s;
+  -o-transition: transform 0.6s 0.1s;
+  transition: transform 0.6s 0.1s;
+  transition: transform 0.6s 0.1s, -webkit-transform 0.6s 0.1s;
 }
 
 .list-style .btn-list-delete:hover::before {
-  -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+  -webkit-transform: rotate(405deg);
+      -ms-transform: rotate(405deg);
+          transform: rotate(405deg);
   background: rgba(55, 255, 255, 0.9);
 }
 
 .list-style .btn-list-delete:hover::after {
-  -webkit-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  -webkit-transform: rotate(-405deg);
+      -ms-transform: rotate(-405deg);
+          transform: rotate(-405deg);
   background: rgba(55, 255, 255, 0.9);
 }
 
@@ -332,21 +404,33 @@ ul, ol {
   background: #ff000050;
 }
 
+.list-style:hover {
+  -webkit-box-shadow: inset 0px 0px 20px 0px #0014ffc4;
+          box-shadow: inset 0px 0px 20px 0px #0014ffc4;
+}
+
 .list-hide {
+  z-index: 1;
   position: absolute;
-  top: calc(25px);
-  right: 5px;
-  width: 30px;
-  height: 5px;
+  top: 20px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
   background: crimson;
+  border-radius: 100%;
   cursor: pointer;
-  -webkit-transition: border-radius 0.3s;
-  -o-transition: border-radius 0.3s;
-  transition: border-radius 0.3s;
+  -webkit-transition: border-radius 0.3s linear, -webkit-transform 0.3s linear;
+  transition: border-radius 0.3s linear, -webkit-transform 0.3s linear;
+  -o-transition: border-radius 0.3s linear, transform 0.3s linear;
+  transition: border-radius 0.3s linear, transform 0.3s linear;
+  transition: border-radius 0.3s linear, transform 0.3s linear, -webkit-transform 0.3s linear;
 }
 
 .list-hide:hover {
-  border-radius: 5px;
+  border-radius: 10%;
+  -webkit-transform: rotate(90deg) scale(1.1);
+      -ms-transform: rotate(90deg) scale(1.1);
+          transform: rotate(90deg) scale(1.1);
 }
 
 .list-hide-active {
@@ -416,54 +500,138 @@ ul, ol {
   position: relative;
 }
 
-.container .tasks .task-container {
-  display: none;
-  position: absolute;
-  min-width: 60%;
-  padding: 20px;
-  margin: 15% 10px 10px 10px;
-  background: #006565;
-}
-
-.container .tasks .task-container .task-container__panel {
+.container .tasks .tasks__bottom-panel {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   position: absolute;
-  right: -35px;
-  top: 0;
-  height: 100%;
-  width: 35px;
-  background: rgba(0, 255, 255, 0.5);
+  bottom: 0;
+  padding: 10px;
+  height: 10%;
+  width: 100%;
+  background: #EFFAFF;
 }
 
-.container .tasks .task-container_active {
-  display: block;
-  -webkit-animation: taskAnim 0.3s;
-          animation: taskAnim 0.3s;
+.container .tasks .tasks__bottom-panel .task__bottom-panel-btn {
+  position: relative;
+  margin: 0 25px 0 0;
+  width: 23px;
+  height: 23px;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  -o-transition: transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
 }
 
-@-webkit-keyframes taskAnim {
+.container .tasks .tasks__bottom-panel .task__bottom-panel-btn::before, .container .tasks .tasks__bottom-panel .task__bottom-panel-btn::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #222;
+}
+
+.container .tasks .tasks__bottom-panel .task__bottom-panel-btn::after {
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.container .tasks .tasks__bottom-panel .task__bottom-panel-btn:hover {
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.container .tasks .tasks__bottom-panel p {
+  font-weight: normal;
+  font-size: 16px;
+  color: #000000;
+}
+
+.container .tasks .task-container {
+  overflow: auto;
+  display: none;
+  position: absolute;
+  min-width: 60%;
+  max-height: 600px;
+  padding: 20px;
+  margin: 15% 10px 10px 10px;
+  background: #006565;
+}
+
+.container .tasks .task-container .task {
+  height: 40px;
+  background: #05abab;
+  border-bottom: 2px solid rgba(55, 255, 255, 0.5);
+  -webkit-animation: taskAppearAnim 0.3s;
+          animation: taskAppearAnim 0.3s;
+}
+
+@-webkit-keyframes taskAppearAnim {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes taskAppearAnim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.container .tasks .task-container .task:last-child {
+  border: none;
+}
+
+.container .tasks .task-container_active {
+  display: block;
+  -webkit-animation: taskAnim .9s;
+          animation: taskAnim .9s;
+}
+
+@-webkit-keyframes taskAnim {
+  from {
+    min-width: 0px;
+  }
+  to {
+    min-width: 60%;
   }
 }
 
 @keyframes taskAnim {
   from {
-    opacity: 0;
+    min-width: 0px;
   }
   to {
-    opacity: 1;
+    min-width: 60%;
   }
+}
+
+::-webkit-scrollbar {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 15px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #222;
 }
